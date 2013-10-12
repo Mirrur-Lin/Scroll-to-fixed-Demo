@@ -1,137 +1,106 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640" />
-
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
-
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
-    </script>
-    <title>Scroll-to-fixed-demo by Mirrur-Lin</title>
-  </head>
-
-  <body>
-    <a id="forkme_banner" href="https://github.com/Mirrur-Lin/Scroll-to-fixed-Demo">View on GitHub</a>
-    <div class="shell">
-
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Scroll-to-fixed-demo</h1>
-            <h2>滚动固定demo</h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </header>
-
-      <section id="downloads">
-        <span class="inner">
-          <a href="https://github.com/Mirrur-Lin/Scroll-to-fixed-Demo/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/Mirrur-Lin/Scroll-to-fixed-Demo/tarball/master" class="tgz"><em>download</em> .TGZ</a>
-        </span>
-      </section>
-
-
-      <span class="banner-fix"></span>
-
-
-      <section id="main_content">
-        <p>&lt;!DOCTYPE HTML&gt;
-
-    </p>
-        
-            *{
-                margin: 0;
-                padding: 0;
-            }
-            body {
-                background: #F1F4F9;
-            }
-            .floor {
-                position: relative;
-            }
-            .content {
-                height: 300px;
-            }
-            .h1 .content{
-                height: 400px;
-            }
-            .top {
-                width: 100%;
-                height: 60px;
-                background: #fff;
-                border-top: solid 1px #e7e7e7;
-                border-bottom: solid 1px #e7e7e7;
-            }
-            .fix {
-                position: fixed;
-                top: 0;
-            }
-            .static {
-                position: static;
-            }
-            .absolute {
-                position: absolute;
-                bottom: 0;
-            }
-            .margin60{
-                padding-top: 60px;
-            }
-            .header {
-                height: 300px;
-            }
-        <div>lll</div>
-        <div>
-            <div>first floor</div>
-            <div>1111</div>
-        </div>
-        <div>
-            <div>second floor</div>
-            <div>2222</div>
-        </div>
-        <div>
-            <div>third floor</div>
-            <div>3333</div>
-        </div>
-        <div>
-            <div>fourth floor</div>
-            <div>4444</div>
-        </div>
-        <div>
-            <div>fifth floor</div>
-            <div>5555</div>
-        </div>
-        <div>
-            <div>sixth floor</div>
-            <div>6666</div>
-        </div>
-        
-      </section>
-
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>this project by <a href="https://github.com/Mirrur-Lin">Mirrur-Lin</a> can be found on <a href="https://github.com/Mirrur-Lin/Scroll-to-fixed-Demo">GitHub</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
-        <span class="octocat"></span>
-      </footer>
-
-    </div>
-
-    
-  </body>
+	<head>
+		<meta charset="utf-8">
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body {
+				background: #F1F4F9;
+			}
+			.floor {
+				position: relative;
+			}
+			.content {
+				height: 300px;
+			}
+			.h1 .content{
+				height: 400px;
+			}
+			.top {
+				width: 100%;
+				height: 60px;
+				background: #fff;
+				border-top: solid 1px #e7e7e7;
+				border-bottom: solid 1px #e7e7e7;
+			}
+			.fix {
+				position: fixed;
+				top: 0;
+			}
+			.static {
+				position: static;
+			}
+			.absolute {
+				position: absolute;
+				bottom: 0;
+			}
+			.margin60{
+				padding-top: 60px;
+			}
+			.header {
+				height: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header">lll</div>
+		<div class="floor h1">
+			<div class="top food">first floor</div>
+			<div class="content">1111</div>
+		</div>
+		<div class="floor">
+			<div class="top food">second floor</div>
+			<div class="content">2222</div>
+		</div>
+		<div class="floor">
+			<div class="top">third floor</div>
+			<div class="content">3333</div>
+		</div>
+		<div class="floor">
+			<div class="top">fourth floor</div>
+			<div class="content">4444</div>
+		</div>
+		<div class="floor">
+			<div class="top">fifth floor</div>
+			<div class="content">5555</div>
+		</div>
+		<div class="floor">
+			<div class="top">sixth floor</div>
+			<div class="content">6666</div>
+		</div>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				var t, 
+					floor_array = $('.floor'),
+					floor_H = {},
+					top_array = $('.floor .top');
+				$('.floor .top').each(function(index){
+					floor_H[index] = $(this).offset().top;
+				});
+				$(document).scroll(function(){
+					var _scrollTop = $(document).scrollTop();
+					for (var i = 0; i < floor_array.length; i++) {
+						if(_scrollTop > floor_H[i]){
+							if(_scrollTop < floor_H[i+1]-60){
+								$('.top').eq(i).removeClass('absolute').removeClass('static').addClass('fix');
+								floor_array.eq(i).find('.content').addClass('margin60');
+							}else if(_scrollTop > floor_H[i+1]-60 && _scrollTop < floor_H[i+1]){
+								$('.top').eq(i).removeClass('fix').removeClass('static').addClass('absolute');
+								floor_array.eq(i).find('.content').addClass('margin60');
+							}
+						}
+						//对于每个top，页面滚动上去的高度小于或top原来的位置时，top为static状态
+						if(_scrollTop <= floor_H[i]){
+							$('.top').eq(i).removeClass('fix').removeClass('absolute').addClass('static');
+							floor_array.eq(i).find('.content').removeClass('margin60');
+						}
+					}
+				});
+			});
+		</script>
+	</body>
 </html>
