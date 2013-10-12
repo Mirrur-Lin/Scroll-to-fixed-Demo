@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body {
+				background: #F1F4F9;
+			}
+			.floor {
+				position: relative;
+			}
+			.content {
+				height: 300px;
+			}
+			.h1 .content{
+				height: 400px;
+			}
+			.top {
+				width: 100%;
+				height: 60px;
+				background: #fff;
+				border-top: solid 1px #e7e7e7;
+				border-bottom: solid 1px #e7e7e7;
+			}
+			.fix {
+				position: fixed;
+				top: 0;
+			}
+			.static {
+				position: static;
+			}
+			.absolute {
+				position: absolute;
+				bottom: 0;
+			}
+			.margin60{
+				padding-top: 60px;
+			}
+			.header {
+				height: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header">lll</div>
+		<div class="floor h1">
+			<div class="top food">first floor</div>
+			<div class="content">1111</div>
+		</div>
+		<div class="floor">
+			<div class="top food">second floor</div>
+			<div class="content">2222</div>
+		</div>
+		<div class="floor">
+			<div class="top">third floor</div>
+			<div class="content">3333</div>
+		</div>
+		<div class="floor">
+			<div class="top">fourth floor</div>
+			<div class="content">4444</div>
+		</div>
+		<div class="floor">
+			<div class="top">fifth floor</div>
+			<div class="content">5555</div>
+		</div>
+		<div class="floor">
+			<div class="top">sixth floor</div>
+			<div class="content">6666</div>
+		</div>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				var t, 
+					floor_array = $('.floor'),
+					floor_H = {},
+					top_array = $('.floor .top');
+				$('.floor .top').each(function(index){
+					floor_H[index] = $(this).offset().top;
+				});
+				$(document).scroll(function(){
+					var _scrollTop = $(document).scrollTop();
+					for (var i = 0; i < floor_array.length; i++) {
+						if(_scrollTop > floor_H[i]){
+							if(_scrollTop < floor_H[i+1]-60){
+								$('.top').eq(i).removeClass('absolute').removeClass('static').addClass('fix');
+								floor_array.eq(i).find('.content').addClass('margin60');
+							}else if(_scrollTop > floor_H[i+1]-60 && _scrollTop < floor_H[i+1]){
+								$('.top').eq(i).removeClass('fix').removeClass('static').addClass('absolute');
+								floor_array.eq(i).find('.content').addClass('margin60');
+							}
+						}
+						//对于每个top，页面滚动上去的高度小于或top原来的位置时，top为static状态
+						if(_scrollTop <= floor_H[i]){
+							$('.top').eq(i).removeClass('fix').removeClass('absolute').addClass('static');
+							floor_array.eq(i).find('.content').removeClass('margin60');
+						}
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
