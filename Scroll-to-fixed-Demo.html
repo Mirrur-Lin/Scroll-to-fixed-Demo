@@ -23,8 +23,8 @@
 				width: 100%;
 				height: 60px;
 				background: #fff;
-				border-top: solid 1px #e7e7e7;
-				border-bottom: solid 1px #e7e7e7;
+				border-top: solid 10px #e7e7e7;
+				border-bottom: solid 10px #e7e7e7;
 			}
 			.fix {
 				position: fixed;
@@ -37,11 +37,18 @@
 				position: absolute;
 				bottom: 0;
 			}
-			.margin60{
-				padding-top: 60px;
+			.padding60{
+				padding-top: 80px;
 			}
 			.header {
 				height: 300px;
+			}
+			.fc {
+				padding-top: 15px;
+			}
+			.footer {
+				height: 900px;
+				background: green;
 			}
 		</style>
 	</head>
@@ -49,10 +56,10 @@
 		<div class="header">lll</div>
 		<div class="floor h1">
 			<div class="top food">first floor</div>
-			<div class="content">1111</div>
+			<div class="content fc">1111</div>
 		</div>
 		<div class="floor">
-			<div class="top food">second floor</div>
+			<div class="top">second floor</div>
 			<div class="content">2222</div>
 		</div>
 		<div class="floor">
@@ -71,32 +78,46 @@
 			<div class="top">sixth floor</div>
 			<div class="content">6666</div>
 		</div>
+		<div class="footer"></div>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script type="text/javascript">
 			$(function(){
-				var t, 
-					floor_array = $('.floor'),
-					floor_H = {},
-					top_array = $('.floor .top');
+				var t,
+					bordersWidth = parseInt($('.top').css('border-top-width'));
+					floorArray = $('.floor'),
+					initTops = {},//存放各个top的初始位置
+					initPaddingTop = {},//存放.content的初始padding-top
+					initTopHeight = {},//存放.top的高度
+					placeholderBlock = {},
+					topArray = $('.floor .top');
 				$('.floor .top').each(function(index){
-					floor_H[index] = $(this).offset().top;
+
+					initTops[index] = $(this).offset().top;//初始top的位置包括border
+					initPaddingTop[index] = parseInt(floorArray.eq(index).find('.content').css('padding-top'));
+					initTopHeight[index] = $(this).height() + bordersWidth * 2;//包括上下border
+					placeholderBlock[index] = $(this).height() + bordersWidth * 2 + initPaddingTop[index];//用于占位(包含上下border和content原来的padding-top)
 				});
+
 				$(document).scroll(function(){
 					var _scrollTop = $(document).scrollTop();
-					for (var i = 0; i < floor_array.length; i++) {
-						if(_scrollTop > floor_H[i]){
-							if(_scrollTop < floor_H[i+1]-60){
+					for (var i = 0; i < floorArray.length; i++) {
+						if(initTops[i+1] == undefined){
+							initTops[i+1] = initTops[i] + floorArray.eq(i).find('.content').height() + initTopHeight[i];
+						}
+						//当前top滚动的距离大于次top初始位置时
+						if(_scrollTop > initTops[i]){
+							if(_scrollTop < initTops[i+1]-initTopHeight[i]){
 								$('.top').eq(i).removeClass('absolute').removeClass('static').addClass('fix');
-								floor_array.eq(i).find('.content').addClass('margin60');
-							}else if(_scrollTop > floor_H[i+1]-60 && _scrollTop < floor_H[i+1]){
+								floorArray.eq(i).find('.content').css('padding-top',placeholderBlock[i]);
+							}else if(_scrollTop >= initTops[i+1]-initTopHeight[i] && _scrollTop < initTops[i+1]){
 								$('.top').eq(i).removeClass('fix').removeClass('static').addClass('absolute');
-								floor_array.eq(i).find('.content').addClass('margin60');
+								floorArray.eq(i).find('.content').css('padding-top',placeholderBlock[i]);
 							}
 						}
 						//对于每个top，页面滚动上去的高度小于或top原来的位置时，top为static状态
-						if(_scrollTop <= floor_H[i]){
+						else if(_scrollTop <= initTops[i]){
 							$('.top').eq(i).removeClass('fix').removeClass('absolute').addClass('static');
-							floor_array.eq(i).find('.content').removeClass('margin60');
+							floorArray.eq(i).find('.content').css('padding-top',initPaddingTop[i]);
 						}
 					}
 				});
